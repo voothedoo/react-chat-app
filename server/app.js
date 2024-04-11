@@ -9,12 +9,9 @@ app.use(express.json());
 
 app.use(cors());
 
-// app.use('/api/users', router);
+app.use('/api/users', router);
 
-app.post('/api/users/register', (req, res) => {
-  console.log(req.body);
-  res.send("Hello");
-});
+
 
 const PORT = process.env.PORT || 5000;
 const LOCALHOST = process.env.HOST || "localhost";
