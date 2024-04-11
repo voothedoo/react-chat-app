@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 
 import Chat from "./pages/Chat.jsx";
 import Register from "./pages/Register.jsx";
@@ -9,6 +13,18 @@ import Login from "./pages/Login.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 import Wrapper from "./components/Wrapper.jsx";
+import { AuthContext, AuthContextProvider } from "./context/AuthContext.jsx";
+
+const PrivateRoute = ({ children }) => {
+  const user = useContext(AuthContext);
+
+  return user.user ? children : <Navigate to="/login" />;
+};
+
+const RedirectRoute = ({ children }) => {
+  const user = useContext(AuthContext);
+  return user.user ? <Navigate to="/" /> : children;
+};
 
 const router = createBrowserRouter([
   {
@@ -17,15 +33,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Chat />,
+        element: (
+          <PrivateRoute>
+            <Chat />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <RedirectRoute>
+            <Register />
+          </RedirectRoute>
+        ),
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <RedirectRoute>
+            <Login />
+          </RedirectRoute>
+        ),
       },
       {
         path: "*",
@@ -37,6 +65,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </React.StrictMode>
 );

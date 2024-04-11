@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+
 const Login = () => {
+  const { registerError } = useContext(AuthContext);
   return (
     <>
       <form
@@ -26,8 +31,17 @@ const Login = () => {
         <button className="w-96 h-11 text-xl rounded-lg bg-emerald-900 hover:bg-emerald-800 border border-emerald-800">
           Sign In
         </button>
-        <p className="w-96 py-2 px-4 text-center text-sm  text-red-900 border border-red-400 rounded-lg bg-red-300">
-          An error occured
+
+        {registerError?.error && (
+          <p className="w-96 py-2 px-4 text-center text-sm  text-red-900 border border-red-400 rounded-lg bg-red-300">
+            {registerError?.message.error}
+          </p>
+        )}
+        <p>
+          Don&apos;t have an account?{" "}
+          <Link className="main-color" to="/register">
+            Register
+          </Link>
         </p>
       </form>
     </>
