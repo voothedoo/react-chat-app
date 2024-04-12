@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import "ldrs/ring";
 
 const Register = () => {
   const {
@@ -21,7 +22,7 @@ const Register = () => {
         <h1 className="text-center text-4xl ">Register</h1>
         <label className="flex">
           <input
-            className="w-96 mx-auto border text-neutral-900 border-neutral-400 rounded-lg px-4 py-2 focus:outline-none focus:border-emerald-400"
+            className="w-96 mx-auto border text-neutral-900 border-neutral-400 rounded-lg px-4 py-2 focus:outline-none focus:border-emerald-400 focus:bg-green-100"
             type="username"
             placeholder="Name"
             required
@@ -32,7 +33,7 @@ const Register = () => {
         </label>
         <label className="flex">
           <input
-            className="w-96 mx-auto border text-neutral-900 border-neutral-400 rounded-lg px-4 py-2 focus:outline-none focus:border-emerald-400"
+            className="w-96 mx-auto border text-neutral-900 border-neutral-400 rounded-lg px-4 py-2 focus:outline-none focus:border-emerald-400 focus:bg-green-100"
             type="email"
             placeholder="Email"
             required
@@ -43,7 +44,7 @@ const Register = () => {
         </label>
         <label className="flex">
           <input
-            className="w-96 mx-auto border text-neutral-900 border-neutral-400 rounded-lg px-4 py-2 focus:outline-none focus:border-emerald-400"
+            className="w-96 mx-auto border text-neutral-900 border-neutral-400 rounded-lg px-4 py-2 focus:outline-none focus:border-emerald-400 focus:bg-green-100"
             type="password"
             placeholder="Password"
             required
@@ -53,7 +54,14 @@ const Register = () => {
           />
         </label>
         <button className="w-96 h-11 text-xl rounded-lg bg-emerald-900 hover:bg-emerald-800 border border-emerald-800">
-          {isRegisterLoading ? "Creating your account" : "Register"}
+          {isRegisterLoading ? (
+            <>
+              <l-ring size={18} color="#00df8e"></l-ring>
+              <span className="pl-3">Signing up</span>
+            </>
+          ) : (
+            <span>Sign Up</span>
+          )}
         </button>
         {registerError?.error && (
           <p className="w-96 py-2 px-4 text-center text-sm  text-red-900 border border-red-400 rounded-lg bg-red-300">
