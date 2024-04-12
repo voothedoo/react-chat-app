@@ -2,25 +2,23 @@ import express from 'express';
 import cors from 'cors';
 import { mongoose } from 'mongoose';
 import 'dotenv/config';
-import router from './Routes/userRoute.js';
+import userRouter from './Routes/userRoute.js';
+import chatRouter from './Routes/chatRoute.js';
+import messageRouter from "./Routes/messageRoute.js";
+
 
 const app = express();
 app.use(express.json());
 
 app.use(cors());
 
-app.use('/api/users', router);
-
-
+app.use('/users', userRouter);
+app.use('/chats', chatRouter);
+app.use('/messages', messageRouter);
 
 const PORT = process.env.PORT || 5000;
 const LOCALHOST = process.env.HOST || "localhost";
 const URI = process.env.ATLAS_URI;
-
-app.get('/', (req, res) => {
-  res.send("Hello");
-});
-
 app.listen(PORT, (req, res) => {
   console.log(`Server running on: http://${LOCALHOST}:${PORT}`);
 });
