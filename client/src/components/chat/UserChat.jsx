@@ -8,7 +8,7 @@ const UserChat = ({ chat, user }) => {
   return (
     <NavLink
       to={recipientUser?._id}
-      className="user-chat flex justify-between items-center gap-2  p-2 rounded-md bg-neutral-700  border-neutral-600 border hover:border-emerald-600 cursor-pointer"
+      className="user-chat flex justify-between items-center gap-2 p-2 rounded-md bg-neutral-700 bg-opacity-50 border-neutral-700 border hover:border-emerald-600 hover:bg-opacity-100 cursor-pointer"
     >
       <img
         className="h-10 rounded-lg"
@@ -23,11 +23,11 @@ const UserChat = ({ chat, user }) => {
           </p>
           <p className="text-xs text-neutral-400">12 April</p>
         </div>
-        <div className="flex justify-between items-end">
-          <p className="text-xs text-neutral-400 italic">
-            Random message being disp...
+        <div className="flex justify-between items-end max-w-40">
+          <p className="text-xs text-neutral-400 italic truncate">
+            Randoadadad ada adadada
           </p>
-          <p className="text-xs text-white bg-orange-600 py- px-2 rounded-full">
+          <p className="text-xs text-white bg-orange-600  px-2 rounded-full">
             2
           </p>
         </div>

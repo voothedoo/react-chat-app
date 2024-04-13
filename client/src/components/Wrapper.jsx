@@ -12,7 +12,7 @@ const Wrapper = () => {
       <div className="wrapper flex flex-col mx-auto h-screen w-11/12 text-neutral-300">
         <Nav />
 
-        <main>
+        <main className="w-full">
           <Outlet />
         </main>
 
