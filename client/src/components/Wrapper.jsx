@@ -9,7 +9,7 @@ const Wrapper = () => {
   const user = useContext(AuthContext);
   return (
     <ChatContextProvider user={user.user}>
-      <div className="flex flex-col mx-auto h-screen w-11/12 md:w-10/12 lg:w-8/12 text-neutral-300">
+      <div className="wrapper flex flex-col mx-auto h-screen w-11/12 text-neutral-300">
         <Nav />
 
         <main>

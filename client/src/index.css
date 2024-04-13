@@ -6,10 +6,18 @@ body {
   background-color: rgb(40, 40, 40);
 }
 
+div.wrapper {
+  max-width: 1280px;
+}
+
 .main-color {
   color: #00df8e;
 }
 
-.active {
+.secondary-color {
+  color: #00c1df;
+}
+
+.active.navlink {
   color: #00915c;
 }
