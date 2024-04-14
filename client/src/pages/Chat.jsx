@@ -32,14 +32,14 @@ const Chat = () => {
               <>
                 <p className="flex items-center gap-2">
                   <HiOutlineInboxArrowDown />
-                  Inbox
+                  Active Chats
                 </p>
               </>
             ) : (
               <>
                 <p className="flex items-center gap-2">
                   <GrCircleAlert />
-                  Inbox is empty
+                  No Active Chats
                 </p>
               </>
             )}

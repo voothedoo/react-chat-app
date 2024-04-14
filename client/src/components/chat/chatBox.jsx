@@ -24,7 +24,7 @@ const ChatBox = () => {
           </h2>
           <div className="bg-neutral-700 rounded-md border border-neutral-600 ">
             <div>
-              <h3 className="text-center bg-neutral-900 bg-opacity-30 p-2 rounded-tr-lg rounded-tl-lg shadow">
+              <h3 className="text-center bg-emerald-950 bg-opacity-90 p-2 rounded-tr-lg rounded-tl-lg shadow">
                 No Conversation Selected
               </h3>
             </div>
@@ -45,7 +45,7 @@ const ChatBox = () => {
           </h2>
           <div className="bg-neutral-700 rounded-md border border-neutral-600 h-4/5">
             <div>
-              <h3 className="text-center bg-neutral-900 bg-opacity-30 p-2 rounded-tr-lg rounded-tl-lg ">
+              <h3 className="text-center bg-slate-950 bg-opacity-50 p-2 rounded-tr-lg rounded-tl-lg ">
                 <l-ring size={18} color="#00df8e"></l-ring>
               </h3>
             </div>
@@ -62,14 +62,14 @@ const ChatBox = () => {
             <LuMessagesSquare /> Message
           </p>
         </h2>
-        <div className="bg-neutral-700 rounded-md border border-neutral-600 h-4/5">
+        <div className="flex flex-col background-pattern bg-neutral-700 rounded-lg border border-neutral-600 h-4/5">
           <div>
             {recipientUser?.name === "alex" ? (
-              <h3 className="text-center bg-neutral-900 bg-opacity-30 p-2 rounded-tr-lg rounded-tl-lg   text-violet-300 glow-text">
+              <h3 className="text-center bg-slate-950 bg-opacity-50 p-2 rounded-tr-lg rounded-tl-lg  text-violet-300 glow-text shadow">
                 {recipientUser?.name}
               </h3>
             ) : (
-              <h3 className="text-center bg-neutral-900 bg-opacity-30 p-2 rounded-tr-lg rounded-tl-lg ">
+              <h3 className=" text-center bg-slate-900  p-2 rounded-tr-lg rounded-tl-lg shadow ">
                 {recipientUser?.name}
               </h3>
             )}
@@ -78,10 +78,12 @@ const ChatBox = () => {
           {messages?.map((message, index) => (
             <div
               key={index}
-              className="bg-neutral-800 bg-opacity-70 w-5/12 px-4 py-2 m-2 rounded-xl"
+              className={`${
+                message.senderId === user._id ? "user-message " : ""
+              }bg-neutral-800 px-4 py-2 m-2 rounded-xl shadow message-box`}
             >
               <h3 className="pb-1">{message.text}</h3>
-              <p className="text-neutral-500 text-end italic text-xs">
+              <p className="text-neutral-500 text-end italic text-xs message-date">
                 {moment(message.currentChat).calendar()}
               </p>
             </div>

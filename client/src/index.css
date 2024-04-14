@@ -25,3 +25,31 @@ div.wrapper {
 .glow-text {
   text-shadow: 0 0 4px rgba(219, 180, 255, 0.5); /* Adjust the values as needed */
 }
+
+.user-message {
+  align-self: flex-end;
+  background-color: #002e1e;
+}
+
+.message-box {
+  width: 47%;
+}
+
+.background-pattern {
+  --s: 40px;
+  --c1: #2f2f2f;
+  --c2: #2a2a2a;
+
+  --_g: var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%, var(--c2) 26% 35%,
+    var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%, var(--c2) 66% 75%,
+    var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%;
+  background: radial-gradient(50% 50% at 100% 0, var(--_g)),
+    radial-gradient(50% 50% at 0 100%, var(--_g)),
+    radial-gradient(50% 50%, var(--_g)),
+    radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2)
+      var(--c1);
+  background-size: var(--s) var(--s);
+
+  /* background-image: url(https://camo.githubusercontent.com/cba518ead87b032dc6f1cbfc7fade27604449201ac1baf34d889f77f093f01ac/68747470733a2f2f7765622e77686174736170702e636f6d2f696d672f62672d636861742d74696c652d6461726b5f61346265353132653731393562366237333364393131306234303866303735642e706e67); */
+  /* background-image: url("./assets/img/background.png"); */
+}
