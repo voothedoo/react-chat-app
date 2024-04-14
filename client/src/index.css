@@ -21,3 +21,7 @@ div.wrapper {
 .active.navlink {
   color: #00915c;
 }
+
+.glow-text {
+  text-shadow: 0 0 4px rgba(219, 180, 255, 0.5); /* Adjust the values as needed */
+}
