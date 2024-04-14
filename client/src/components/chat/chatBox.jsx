@@ -5,6 +5,8 @@ import { ChatContext } from "../../context/ChatContext";
 import { useFetchCurrentChatRecipient } from "../../hooks/useFetchCurrentChatRecipient.js";
 import moment from "moment";
 
+import { FiSend } from "react-icons/fi";
+
 import "ldrs/ring";
 
 const ChatBox = () => {
@@ -84,10 +86,26 @@ const ChatBox = () => {
             >
               <h3 className="pb-1">{message.text}</h3>
               <p className="text-neutral-500 text-end italic text-xs message-date">
-                {moment(message.currentChat).calendar()}
+                {moment(message.createdAt).calendar()}
               </p>
             </div>
           ))}
+
+          <div className="mt-auto w-full">
+            <form
+              action=""
+              className=" bg-neutral-800 py-2 px-5 rounded-full flex items-center justify-between shadow m-2 mb-2"
+            >
+              <input
+                className=" bg-neutral-800 focus:outline-none flex-grow w-full placeholder:text-neutral-500 placeholder:italic"
+                type="text"
+                placeholder="Message"
+              />
+              <button>
+                <FiSend className="text-neutral-500 text-xl" />
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </>
