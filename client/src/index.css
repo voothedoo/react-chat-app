@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(40, 40, 40);
+  background-color: #282828;
 }
 
 div.wrapper {
@@ -37,8 +37,8 @@ div.wrapper {
 
 .background-pattern {
   --s: 40px;
-  --c1: #2f2f2f;
-  --c2: #2a2a2a;
+  --c1: #353535;
+  --c2: #303030;
 
   --_g: var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%, var(--c2) 26% 35%,
     var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%, var(--c2) 66% 75%,
@@ -50,6 +50,29 @@ div.wrapper {
       var(--c1);
   background-size: var(--s) var(--s);
 
-  /* background-image: url(https://camo.githubusercontent.com/cba518ead87b032dc6f1cbfc7fade27604449201ac1baf34d889f77f093f01ac/68747470733a2f2f7765622e77686174736170702e636f6d2f696d672f62672d636861742d74696c652d6461726b5f61346265353132653731393562366237333364393131306234303866303735642e706e67); */
-  /* background-image: url("./assets/img/background.png"); */
+  /* background: linear-gradient(
+      45deg,
+      transparent 34%,
+      #383838 35%,
+      #383838 40%,
+      transparent 41%,
+      transparent 59%,
+      #383838 60%,
+      #383838 65%,
+      transparent 66%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 34%,
+      #383838 35%,
+      #383838 40%,
+      transparent 41%,
+      transparent 59%,
+      #383838 60%,
+      #383838 65%,
+      transparent 66%
+    );
+  background-size: 2em 2em;
+  background-color: #343434;
+  opacity: 1; */
 }

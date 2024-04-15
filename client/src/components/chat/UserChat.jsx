@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import avatarPlaceholder from "../../assets/img/avatar_placeholder.jpg";
 import { useFetchRecipientUser } from "../../hooks/useFetchRecipientUser";
-import { NavLink } from "react-router-dom";
 import { ChatContext } from "../../context/ChatContext";
 
 const UserChat = ({ chat, user }) => {
   const { recipientUser } = useFetchRecipientUser({ chat, user });
   const { updateCurrentChat } = useContext(ChatContext);
+
   return (
     <div
       onClick={() => updateCurrentChat(chat)}

@@ -28,7 +28,7 @@ const Chat = () => {
           </div>
         ) : (
           <h2 className="text-xl mb-2">
-            {userChats.length >= 1 ? (
+            {userChats?.length >= 1 ? (
               <>
                 <p className="flex items-center gap-2">
                   <HiOutlineInboxArrowDown />

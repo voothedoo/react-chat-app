@@ -5,14 +5,22 @@ import { ChatContext } from "../../context/ChatContext";
 import { useFetchCurrentChatRecipient } from "../../hooks/useFetchCurrentChatRecipient.js";
 import moment from "moment";
 
+//svgs
 import { FiSend } from "react-icons/fi";
+import { BsEmojiSmile } from "react-icons/bs";
 
 import "ldrs/ring";
 
 const ChatBox = () => {
   const { user } = useContext(AuthContext);
-  const { currentChat, messages, isMessagesLoading, messagesError } =
-    useContext(ChatContext);
+  const {
+    currentChat,
+    messages,
+    isMessagesLoading,
+    message,
+    updateMessage,
+    createMessage,
+  } = useContext(ChatContext);
 
   const { recipientUser } = useFetchCurrentChatRecipient({ currentChat, user });
   if (!recipientUser)
@@ -93,14 +101,20 @@ const ChatBox = () => {
 
           <div className="mt-auto w-full">
             <form
+              onSubmit={(e) =>
+                createMessage(currentChat._id, user._id, message, e)
+              }
               action=""
-              className=" bg-neutral-800 py-2 px-5 rounded-full flex items-center justify-between shadow m-2 mb-2"
+              className=" bg-neutral-800 py-2 px-5 rounded-full flex items-center justify-between shadow m-2 mb-2 gap-2"
             >
               <input
+                value={message}
+                onChange={(e) => updateMessage(e.target.value)}
                 className=" bg-neutral-800 focus:outline-none flex-grow w-full placeholder:text-neutral-500 placeholder:italic"
                 type="text"
                 placeholder="Message"
               />
+              <BsEmojiSmile className="text-neutral-500 text-xl cursor-pointer" />
               <button>
                 <FiSend className="text-neutral-500 text-xl" />
               </button>
