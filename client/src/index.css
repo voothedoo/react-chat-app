@@ -28,7 +28,11 @@ div.wrapper {
 
 .user-message {
   align-self: flex-end;
-  background-color: #002e1e;
+  background-color: rgb(2, 44, 34);
+}
+
+.message {
+  word-wrap: break-word;
 }
 
 .message-box {
@@ -76,3 +80,7 @@ div.wrapper {
   background-color: #343434;
   opacity: 1; */
 }
+
+/* h1 {
+  color: #696969
+} */

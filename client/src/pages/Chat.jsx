@@ -56,9 +56,9 @@ const Chat = () => {
       <div className=" w-40 ">
         <h2 className="flex items-center gap-2 mb-2 text-xl">
           <FiUsers />
-          Contacts
+          Meet
         </h2>
-        <div className="mb-4 flex flex-col gap-1">
+        {/* <div className="mb-4 flex flex-col gap-1">
           {userChats?.length > 0 ? (
             <>
               <h3 className="text-emerald-600">Online</h3>
@@ -80,7 +80,7 @@ const Chat = () => {
             />
             <h4 className="text-sm truncate">exampleuser12345dsdasd</h4>
           </div>
-        </div>
+        </div> */}
         <div className="mb-4 flex flex-col gap-1">
           {potentialChats.length > 0 ? (
             <>

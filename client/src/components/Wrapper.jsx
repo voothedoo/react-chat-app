@@ -8,17 +8,15 @@ import { useContext } from "react";
 const Wrapper = () => {
   const user = useContext(AuthContext);
   return (
-    <ChatContextProvider user={user.user}>
-      <div className="wrapper flex flex-col mx-auto h-screen w-11/12 text-neutral-300">
-        <Nav />
-
+    <div className="wrapper flex flex-col mx-auto h-screen w-11/12 text-neutral-300">
+      <Nav />
+      <ChatContextProvider user={user.user}>
         <main className="w-full h-screen">
           <Outlet />
         </main>
-
-        <Footer />
-      </div>
-    </ChatContextProvider>
+      </ChatContextProvider>
+      <Footer />
+    </div>
   );
 };
 
