@@ -5,7 +5,7 @@ import { ChatContext } from "../../context/ChatContext";
 
 const UserChat = ({ chat, user }) => {
   const { recipientUser } = useFetchRecipientUser({ chat, user });
-  const { updateCurrentChat } = useContext(ChatContext);
+  const { updateCurrentChat, onlineUsers } = useContext(ChatContext);
 
   return (
     <div
@@ -21,12 +21,24 @@ const UserChat = ({ chat, user }) => {
         <div className="flex justify-between text-sm items-center">
           {recipientUser?.name === "alex" ? (
             <p className="flex items-center gap-1 text-base text-violet-300 glow-text">
-              <span className="w-2 h-2 bg-green-600 rounded-full block"></span>
+              {onlineUsers.some(
+                (user) => user?.userId === recipientUser?._id
+              ) ? (
+                <span className="w-2 h-2 bg-green-600 rounded-full block online-ligth"></span>
+              ) : (
+                ""
+              )}
               {recipientUser?.name}
             </p>
           ) : (
             <p className="flex items-center gap-1 text-white text-base">
-              <span className="w-2 h-2 bg-green-600 rounded-full block"></span>
+              {onlineUsers.some(
+                (user) => user?.userId === recipientUser?._id
+              ) ? (
+                <span className="w-2 h-2 bg-green-600 rounded-full block online-ligth"></span>
+              ) : (
+                ""
+              )}
               {recipientUser?.name}
             </p>
           )}
@@ -34,7 +46,7 @@ const UserChat = ({ chat, user }) => {
         </div>
         <div className="flex justify-between items-end max-w-40">
           <p className="text-xs text-neutral-400 italic truncate">
-            Randoadadad ada adadada
+            Message area
           </p>
           <p className="text-xs text-white bg-orange-600  px-2 rounded-full">
             2

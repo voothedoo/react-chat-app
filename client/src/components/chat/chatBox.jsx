@@ -11,15 +11,9 @@ import { LuSend } from "react-icons/lu";
 import "ldrs/ring";
 
 const ChatBox = () => {
-  const [text, setText] = useState("");
-
-  function handleOnEnter() {
-    createMessage(currentChat?._id, user?._id, text);
-    setText("");
-  }
-
+  const [textMessage, setTextMessage] = useState("");
   const { user } = useContext(AuthContext);
-  const { currentChat, messages, isMessagesLoading, createMessage } =
+  const { currentChat, messages, isMessagesLoading, sendTextMessage } =
     useContext(ChatContext);
 
   const { recipientUser } = useFetchCurrentChatRecipient({ currentChat, user });
@@ -27,7 +21,7 @@ const ChatBox = () => {
   if (!recipientUser)
     return (
       <>
-        <div className=" w-3/5 h-10/12 h-full">
+        <div className=" w-4/5 h-10/12 h-full">
           <h2 className="text-xl mb-3">
             <p className="flex items-center gap-2">
               <LuMessagesSquare /> Message
@@ -48,7 +42,7 @@ const ChatBox = () => {
   if (isMessagesLoading)
     return (
       <>
-        <div className=" w-3/5 h-10/12 h-full">
+        <div className=" w-4/5 h-10/12 h-full">
           <h2 className="text-xl mb-3">
             <p className="flex items-center gap-2">
               <LuMessagesSquare /> Message
@@ -67,7 +61,7 @@ const ChatBox = () => {
     );
   return (
     <>
-      <div className=" w-3/5 max-h-10/12 h-full">
+      <div className=" w-4/5 max-h-10/12 h-full">
         <h2 className="text-xl mb-3">
           <p className="flex items-center gap-2">
             <LuMessagesSquare /> Message
@@ -76,11 +70,11 @@ const ChatBox = () => {
         <div className="flex flex-col background-pattern bg-neutral-700 rounded-lg border border-neutral-700 h-4/5 ">
           <div>
             {recipientUser?.name === "alex" ? (
-              <h3 className="text-center bg-neutral-800  p-2 rounded-tr-lg rounded-tl-lg  text-violet-300 glow-text shadow">
+              <h3 className="text-center bg-neutral-900  p-2 rounded-tr-lg rounded-tl-lg  text-violet-300 glow-text shadow">
                 {recipientUser?.name}
               </h3>
             ) : (
-              <h3 className=" text-center bg-neutral-800  p-2 rounded-tr-lg rounded-tl-lg shadow ">
+              <h3 className=" text-center bg-neutral-900  p-2 rounded-tr-lg rounded-tl-lg shadow ">
                 {recipientUser?.name}
               </h3>
             )}
@@ -101,17 +95,34 @@ const ChatBox = () => {
             ))}
           </div>
 
-          <div className="mt-auto w-full py-2 bg-neutral-800 rounded-b-lg flex items-center shadow">
+          <div className="mt-auto w-full py-2 bg-neutral-900 rounded-b-lg flex items-center shadow">
             <InputEmoji
               background="#bbbbbb"
               placeholderColor="#696969"
               borderColor="#696969"
-              value={text}
-              onChange={setText}
+              value={textMessage}
+              onEnter={() =>
+                sendTextMessage(
+                  textMessage,
+                  user,
+                  currentChat._id,
+                  setTextMessage
+                )
+              }
+              onChange={setTextMessage}
               cleanOnEnter
-              onEnter={handleOnEnter}
             />
-            <button onClick={handleOnEnter} className="pr-3">
+            <button
+              onClick={() =>
+                sendTextMessage(
+                  textMessage,
+                  user,
+                  currentChat._id,
+                  setTextMessage
+                )
+              }
+              className="pr-3"
+            >
               <LuSend className="text-emerald-800 text-3xl" />
             </button>
           </div>

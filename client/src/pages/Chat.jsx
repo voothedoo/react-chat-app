@@ -19,7 +19,7 @@ const Chat = () => {
     useContext(ChatContext);
 
   return (
-    <div className="flex flex-row justify-between w-full h-full gap-2">
+    <div className="flex flex-row  w-full h-full gap-5">
       <div className="flex flex-col gap-1 w-1/5 min-w-56">
         {isUserChatsLoading ? (
           <div className="flex items-center gap-2 mb-2 text-xl">
@@ -48,39 +48,31 @@ const Chat = () => {
         {userChats?.map((chat) => {
           return <UserChat key={uuidv4()} chat={chat} user={user} />;
         })}
-      </div>
-
-      <ChatBox />
-
-      <div className=" bg-neutral-700 w-px h-90 opacity-30"></div>
-      <div className=" w-40 ">
-        <h2 className="flex items-center gap-2 mb-2 text-xl">
+        <h2 className="flex items-center gap-2 mb-2 text-xl mt-10">
           <FiUsers />
           Meet
         </h2>
-        {/* <div className="mb-4 flex flex-col gap-1">
-          {userChats?.length > 0 ? (
+        <div className="mb-4 flex flex-col gap-1">
+          {potentialChats.length > 0 ? (
             <>
-              <h3 className="text-emerald-600">Online</h3>
-              {userChats?.map((chat) => {
-                return <UserContacts key={uuidv4()} chat={chat} user={user} />;
-              })}
+              {potentialChats.map((chat) => (
+                <PotentialChats key={uuidv4()} conversationPartner={chat} />
+              ))}
             </>
           ) : (
             ""
           )}
         </div>
-        <div className="mb-4 flex flex-col gap-1">
-          <h3 className="text-rose-600">Offline</h3>
-          <div className="flex items-center rounded-md gap-2 p-1 bg-neutral-700 bg-opacity-10 border border-neutral-700 border-opacity-50 hover:border-emerald-600 hover:bg-opacity-100 cursor-pointer opacity-50 hover:opacity-100 ">
-            <img
-              className="h-6 rounded-full"
-              src={avatarPlaceholder}
-              alt="user avatar image"
-            />
-            <h4 className="text-sm truncate">exampleuser12345dsdasd</h4>
-          </div>
-        </div> */}
+      </div>
+
+      <ChatBox />
+
+      {/* <div className=" bg-neutral-700 w-px h-90 opacity-30"></div> */}
+      {/* <div className=" w-40 ">
+        <h2 className="flex items-center gap-2 mb-2 text-xl">
+          <FiUsers />
+          Meet
+        </h2>
         <div className="mb-4 flex flex-col gap-1">
           {potentialChats.length > 0 ? (
             <>
@@ -93,7 +85,7 @@ const Chat = () => {
             ""
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

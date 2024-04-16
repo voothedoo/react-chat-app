@@ -14,7 +14,7 @@ const Nav = () => {
       <div className="flex flex-row justify-between">
         <Link to="/">
           <h1 className="main-color text-4xl font-mono flex gap-2">
-            <img className="h-10" src={LOGO}></img>Chat-o-Matic
+            <img className="h-10" src={LOGO}></img>ChatApp
           </h1>
         </Link>
         <div className="flex gap-4 items-center">

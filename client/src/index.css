@@ -23,7 +23,11 @@ div.wrapper {
 }
 
 .glow-text {
-  text-shadow: 0 0 4px rgba(219, 180, 255, 0.5); /* Adjust the values as needed */
+  text-shadow: 0 0 4px rgba(219, 180, 255, 0.5);
+}
+
+.online-light {
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Adjust the color and opacity as needed */
 }
 
 .user-message {
@@ -47,38 +51,12 @@ div.wrapper {
   --_g: var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%, var(--c2) 26% 35%,
     var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%, var(--c2) 66% 75%,
     var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%;
-  background: radial-gradient(50% 50% at 100% 0, var(--_g)),
-    radial-gradient(50% 50% at 0 100%, var(--_g)),
-    radial-gradient(50% 50%, var(--_g)),
-    radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2)
-      var(--c1);
+  background: radial-gradient(closest-side at 50% 50%, var(--_g)),
+    radial-gradient(closest-side at 50% 50%, var(--_g)),
+    radial-gradient(closest-side at 50% 50%, var(--_g)),
+    radial-gradient(closest-side at 50% 50%, var(--_g)) calc(var(--s) / 2)
+      calc(var(--s) / 2) var(--c1);
   background-size: var(--s) var(--s);
-
-  /* background: linear-gradient(
-      45deg,
-      transparent 34%,
-      #383838 35%,
-      #383838 40%,
-      transparent 41%,
-      transparent 59%,
-      #383838 60%,
-      #383838 65%,
-      transparent 66%
-    ),
-    linear-gradient(
-      135deg,
-      transparent 34%,
-      #383838 35%,
-      #383838 40%,
-      transparent 41%,
-      transparent 59%,
-      #383838 60%,
-      #383838 65%,
-      transparent 66%
-    );
-  background-size: 2em 2em;
-  background-color: #343434;
-  opacity: 1; */
 }
 
 /* h1 {
