@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import { FaUser } from "react-icons/fa6";
 import LOGO from "../assets/img/chat_app_logo.png";
 import { IoIosLogOut } from "react-icons/io";
+import Notification from "./chat/Notification";
 
 const Nav = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -49,14 +50,17 @@ const Nav = () => {
               </li>
             </ul>
           ) : (
-            <Link
-              onClick={() => logoutUser()}
-              to="/login"
-              className="flex items-center h-fit gap-1 main-color hover:bg-teal-900 px-2 py-1 rounded-md"
-            >
-              <IoIosLogOut />
-              <p>Logout</p>
-            </Link>
+            <>
+              {/* <Notification /> */}
+              <Link
+                onClick={() => logoutUser()}
+                to="/login"
+                className="flex items-center h-fit gap-1 main-color hover:bg-teal-900 px-2 py-1 rounded-md"
+              >
+                <IoIosLogOut />
+                <p>Logout</p>
+              </Link>
+            </>
           )}
         </div>
       </div>

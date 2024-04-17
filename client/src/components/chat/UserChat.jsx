@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import avatarPlaceholder from "../../assets/img/avatar_placeholder.jpg";
 import { useFetchRecipientUser } from "../../hooks/useFetchRecipientUser";
 import { ChatContext } from "../../context/ChatContext";
 
 const UserChat = ({ chat, user }) => {
   const { recipientUser } = useFetchRecipientUser({ chat, user });
-  const { updateCurrentChat, onlineUsers } = useContext(ChatContext);
+  const { updateCurrentChat, onlineUsers, messages } = useContext(ChatContext);
 
   return (
     <div
@@ -45,9 +45,7 @@ const UserChat = ({ chat, user }) => {
           <p className="text-xs text-neutral-400">12 April</p>
         </div>
         <div className="flex justify-between items-end max-w-40">
-          <p className="text-xs text-neutral-400 italic truncate">
-            Message area
-          </p>
+          <p className="text-xs text-neutral-400 italic truncate"></p>
           <p className="text-xs text-white bg-orange-600  px-2 rounded-full">
             2
           </p>

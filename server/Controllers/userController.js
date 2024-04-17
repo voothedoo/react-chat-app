@@ -18,6 +18,8 @@ const registerUser = async (req, res) => {
 
     if (user) return res.status(409).json({ error: "This email is already registered." });
 
+    if (name === "you") return res.status(422).json({ error: "F#$k you Danté <3" });
+
     if (!name || !email || !password) return res.status(422).json({ error: "All fields are required." });
 
     if (!validator.isEmail(email)) return res.status(422).json({ error: "Email must be a valid email." });

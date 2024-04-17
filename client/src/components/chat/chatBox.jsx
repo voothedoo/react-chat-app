@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { LuMessagesSquare } from "react-icons/lu";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
@@ -15,8 +15,12 @@ const ChatBox = () => {
   const { user } = useContext(AuthContext);
   const { currentChat, messages, isMessagesLoading, sendTextMessage } =
     useContext(ChatContext);
-
   const { recipientUser } = useFetchCurrentChatRecipient({ currentChat, user });
+  const scroll = useRef();
+
+  useEffect(() => {
+    scroll.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   if (!recipientUser)
     return (
@@ -82,6 +86,7 @@ const ChatBox = () => {
           <div className="w-full overflow-auto flex flex-col">
             {messages?.map((message, index) => (
               <div
+                ref={scroll}
                 key={index}
                 className={`${
                   message.senderId === user._id ? "user-message " : ""
