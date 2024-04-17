@@ -8,8 +8,6 @@ import messageRouter from "./Routes/messageRoute.js";
 
 import { Server } from 'socket.io';
 
-
-
 const app = express();
 app.use(express.json());
 
@@ -57,13 +55,10 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen(3000);
-
-
 const PORT = process.env.PORT || 5000;
 const LOCALHOST = process.env.HOST || "localhost";
 const URI = process.env.ATLAS_URI;
-app.listen(PORT, (req, res) => {
+io.listen(PORT, (req, res) => {
   console.log(`\nServer running on: \x1b[35mhttp://${LOCALHOST}:${PORT}\x1b[0m`);
 });
 
