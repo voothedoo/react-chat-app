@@ -18,7 +18,7 @@ app.use('/users', userRouter);
 app.use('/chats', chatRouter);
 app.use('/messages', messageRouter);
 
-const io = new Server({ cors: "http://localhost:5173/" });
+const io = new Server({ cors: "https://alex-chatapp.netlify.app" });
 
 let onlineUsers = [];
 
