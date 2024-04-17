@@ -22,7 +22,7 @@ export const ChatContextProvider = ({ children, user }) => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    const newSocket = io("wss://chatapp1-pzrxozln.b4a.run");
+    const newSocket = io("wss://chatapp2-q7inl0v8.b4a.run");
     setSocket(newSocket);
 
     return () => {

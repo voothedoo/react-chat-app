@@ -1,4 +1,4 @@
-export const baseUrl = "https://chatapp1-pzrxozln.b4a.run";
+export const baseUrl = "https://chatapp2-q7inl0v8.b4a.run";
 
 export const postRequest = async (url, body) => {
 
