@@ -1,29 +1,35 @@
 import express from 'express';
 import cors from 'cors';
-import { mongoose } from 'mongoose';
+import { connect } from 'mongoose'; // Corrected import
 import 'dotenv/config';
 import userRouter from './Routes/userRoute.js';
 import chatRouter from './Routes/chatRoute.js';
-import messageRouter from "./Routes/messageRoute.js";
-
+import messageRouter from './Routes/messageRoute.js';
+import { createServer } from 'http';
 import { Server } from 'socket.io';
 
 const app = express();
 app.use(express.json());
-
 app.use(cors());
 
 app.use('/users', userRouter);
 app.use('/chats', chatRouter);
 app.use('/messages', messageRouter);
 
-const io = new Server(app);
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+  cors: {
+    origin: "https://alex-chatapp.netlify.app/",
+    methods: ["GET", "POST"]
+  }
+});
 
 let onlineUsers = [];
 
 io.on("connection", (socket) => {
+  console.log("A user connected:", socket.id);
 
-  //new connection
   socket.on("addNewUser", (userId) => {
     if (!onlineUsers.some(user => user.userId === userId)) {
       onlineUsers.push({
@@ -34,8 +40,6 @@ io.on("connection", (socket) => {
     io.emit("getOnlineUsers", onlineUsers);
   });
 
-
-  //add message
   socket.on("sendMessage", (message) => {
     const user = onlineUsers.find(user => user.userId === message.recipientId);
     if (user) {
@@ -48,27 +52,24 @@ io.on("connection", (socket) => {
     }
   });
 
-
   socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
     onlineUsers = onlineUsers.filter(user => user.socketId !== socket.id);
     io.emit("getOnlineUsers", onlineUsers);
   });
 });
 
 const PORT = process.env.PORT || 5000;
-const LOCALHOST = process.env.HOST || "localhost";
-const URI = process.env.ATLAS_URI;
-io.listen(PORT, (req, res) => {
-  console.log(`\nServer running on: \x1b[35mhttp://${LOCALHOST}:${PORT}\x1b[0m`);
+httpServer.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 
-//DB Connection
 (async () => {
   try {
-    await mongoose.connect(URI);
-    console.log(`✅\x1b[34m MongoDB\x1b[0m connection established!`);
+    const URI = process.env.ATLAS_URI;
+    await connect(URI);
+    console.log('MongoDB connection established!');
   } catch (err) {
-    console.error(`⛔️\x1b[31m MongoDB\x1b[0m  connection failed\n`, err);
-    throw err;
+    console.error('MongoDB connection failed', err);
   }
 })();
