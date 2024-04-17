@@ -20,7 +20,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://alex-chatapp.netlify.app/",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
